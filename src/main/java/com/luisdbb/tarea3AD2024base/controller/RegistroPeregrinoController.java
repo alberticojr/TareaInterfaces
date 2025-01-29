@@ -2,6 +2,8 @@ package com.luisdbb.tarea3AD2024base.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -14,8 +16,11 @@ import com.luisdbb.tarea3AD2024base.config.StageManager;
 import com.luisdbb.tarea3AD2024base.modelo.Credenciales;
 import com.luisdbb.tarea3AD2024base.modelo.Parada;
 import com.luisdbb.tarea3AD2024base.modelo.Peregrino;
+import com.luisdbb.tarea3AD2024base.modelo.PeregrinoParada;
+import com.luisdbb.tarea3AD2024base.services.AlertasServices;
 import com.luisdbb.tarea3AD2024base.services.CredencialesService;
 import com.luisdbb.tarea3AD2024base.services.ParadaService;
+import com.luisdbb.tarea3AD2024base.services.PeregrinoParadaService;
 import com.luisdbb.tarea3AD2024base.services.PeregrinoService;
 import com.luisdbb.tarea3AD2024base.services.ValidacionesService;
 import com.luisdbb.tarea3AD2024base.view.FxmlView;
@@ -28,6 +33,7 @@ import javafx.scene.control.TextField;
 
 @Controller
 public class RegistroPeregrinoController implements Initializable{
+	
 	
 	@FXML
 	private TextField nombreField;
@@ -54,22 +60,55 @@ public class RegistroPeregrinoController implements Initializable{
 	@Autowired
 	private CredencialesService credencialeService;
 	
+	@Autowired
+	private PeregrinoParadaService peregrinoParadaService;
+	
 	@FXML
 	private void PulsaCrearPeregrino () {
 		String nombreCompleto = nombreField.getText();
 		String nombreUsuario = usuField.getText();
 		String contraUsuario = contraField.getText();
-		String nombreParada = chbParada.getValue();
+		String datosParada = chbParada.getValue();
 		String nacionalidad = chbPaises.getValue();
 		
-		Credenciales c = new Credenciales(nombreUsuario, contraUsuario, "peregrino");
-		credencialeService.save(c);
+		boolean credencialesCorrectas = ValidacionesService.comprobarCredenciales(nombreUsuario, contraUsuario);
 		
-		Peregrino p = new Peregrino(nombreUsuario ,nacionalidad,nombreCompleto);
-		peregrinoService.save(p);
+		String[] nombreYRegion = datosParada.split(" ");
+		String nombreParada = nombreYRegion[0];
+		char regionParada = nombreYRegion[2].charAt(0);
 		
-		p.setCredenciales(c);
-		peregrinoService.save(p);
+		Parada paradaP = paradaService.findByNameAndRegion(nombreParada, regionParada);
+		
+		boolean peregrinoExiste = peregrinoService.existePeregrino(nombreUsuario);
+		
+		if (!peregrinoExiste) {
+			
+			if (credencialesCorrectas) {
+				Credenciales c = new Credenciales(nombreUsuario, contraUsuario, "peregrino");
+				credencialeService.save(c);
+
+				Peregrino p = new Peregrino(nombreUsuario, nacionalidad, nombreCompleto);
+				peregrinoService.save(p);
+
+				Date fecha = Date.valueOf(LocalDate.now());
+
+				PeregrinoParada pp = new PeregrinoParada(p, paradaP, fecha);
+				peregrinoParadaService.save(pp);
+
+				p.setCredenciales(c);
+				peregrinoService.save(p);
+			} else {
+				nombreField.setText(null);
+				usuField.setText(null);
+				contraField.setText(null);
+			}
+		}
+		else {
+			AlertasServices.altPeregrinoExiste();
+			nombreField.setText(null);
+			usuField.setText(null);
+			contraField.setText(null);
+		}
 		
 	}
 	
@@ -95,8 +134,8 @@ public class RegistroPeregrinoController implements Initializable{
 		
 		for (String pais : map.values()) {
 			chbPaises.getItems().add(pais);
+			
 		}
-		
 		
 		List <Parada> listaParadas = paradaService.findAll();
 		
@@ -104,6 +143,10 @@ public class RegistroPeregrinoController implements Initializable{
 			chbParada.getItems().add(parada.getNombre()+" - "+parada.getRegion());
 		}
 		
+		chbPaises.setValue(map.get("ES"));
+		chbParada.setValue("gijon - g");
 		
 	}
+	
+	
 }

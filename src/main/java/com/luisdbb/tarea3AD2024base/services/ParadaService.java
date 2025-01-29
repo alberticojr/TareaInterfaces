@@ -50,4 +50,8 @@ public class ParadaService {
 		if (parada == null) { return false; }
 		else { return true; }
 	}
+	
+	public Parada findByNameAndRegion (String nombre, char region) {
+		return paradaRespository.findByNameAndRegion(nombre, region);
+	}
 }

@@ -37,5 +37,17 @@ public class PeregrinoService {
 	public List<Peregrino> findAll() {
 		return peregrinoRepository.findAll();
 	}
+	
+	public boolean existePeregrino(String nombre) {
+		Peregrino p = peregrinoRepository.findByNombre(nombre);
+		
+		if (p == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+		
+	}
 
 }

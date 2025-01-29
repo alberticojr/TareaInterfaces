@@ -34,6 +34,15 @@ public class PeregrinoParada {
 	public PeregrinoParada() {
 		super();
 	}
+	
+	public PeregrinoParada(Peregrino peregrino, Parada parada, Date fecha) {
+		super();
+		this.peregrino = peregrino;
+		this.parada = parada;
+		this.fecha = fecha;
+	}
+
+
 
 	//GETTERS Y SETTERS
 	public long getId() {
