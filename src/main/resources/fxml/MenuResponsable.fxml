@@ -87,7 +87,7 @@
                               <Font name="Segoe UI Black" size="20.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefWidth="300.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Exportar Datos de parada" textFill="WHITE" GridPane.rowIndex="1">
+                        <Button onAction="#pulsaExportar" mnemonicParsing="false" prefWidth="300.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Exportar Datos de parada" textFill="WHITE" GridPane.rowIndex="1">
                            <font>
                               <Font name="Segoe UI Black" size="20.0" />
                            </font>

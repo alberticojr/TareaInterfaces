@@ -26,6 +26,10 @@ public class Parada {
 	@JoinColumn
 	private Credenciales credenciales;
 	
+	@OneToOne(cascade=CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+	private Carnet carnet;
+	
 	
 	//CONSTRUCTORES
 	

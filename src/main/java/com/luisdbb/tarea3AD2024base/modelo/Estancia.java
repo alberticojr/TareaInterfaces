@@ -1,6 +1,6 @@
 package com.luisdbb.tarea3AD2024base.modelo;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 import jakarta.persistence.*;
 
@@ -78,6 +78,22 @@ public class Estancia {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public Peregrino getPeregrino() {
+		return peregrino;
+	}
+
+	public void setPeregrino(Peregrino peregrino) {
+		this.peregrino = peregrino;
+	}
+
+	public Parada getParada() {
+		return parada;
+	}
+
+	public void setParada(Parada parada) {
+		this.parada = parada;
 	}
 
 

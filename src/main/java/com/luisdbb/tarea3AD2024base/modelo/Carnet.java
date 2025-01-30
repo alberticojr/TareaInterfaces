@@ -1,6 +1,6 @@
 package com.luisdbb.tarea3AD2024base.modelo;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 import jakarta.persistence.*;
 
@@ -12,7 +12,7 @@ public class Carnet {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	private long id;
-	private LocalDate fechaexp;
+	private Date fechaexp;
 	private Double distancia = 0.0;
 	private int nvips = 0;
 	
@@ -21,36 +21,30 @@ public class Carnet {
 	private Peregrino peregrino;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+	@JoinColumn
 	private Parada paradaInicial;
 	
-//	private Peregrino peregrino;
 	
 	//CONSTRUCTOR
-	public Carnet(LocalDate fechaexp, Double distancia, int nvips, Parada paradaInicial, Peregrino peregrino) {
+	public Carnet(Date fechaexp, Double distancia, int nvips) {
 		super();
 		this.fechaexp = fechaexp;
 		this.distancia = distancia;
 		this.nvips = nvips;
-//		this.paradaInicial = paradaInicial;
-//		this.peregrino = peregrino;
+		
 	}
 	
-	
-
 	public Carnet() {
 		super();
-		this.fechaexp = LocalDate.now();
 	}
 
-
-
+	
 	//GETTERS Y SETTERS
-	public LocalDate getFechaexp() {
+	public Date getFechaexp() {
 		return fechaexp;
 	}
 
-	public void setFechaexp(LocalDate fechaexp) {
+	public void setFechaexp(Date fechaexp) {
 		this.fechaexp = fechaexp;
 	}
 
@@ -77,8 +71,22 @@ public class Carnet {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	public Peregrino getPeregrino() {
+		return peregrino;
+	}
 
+	public void setPeregrino(Peregrino peregrino) {
+		this.peregrino = peregrino;
+	}
 
+	public Parada getParadaInicial() {
+		return paradaInicial;
+	}
+
+	public void setParadaInicial(Parada paradaInicial) {
+		this.paradaInicial = paradaInicial;
+	}
 
 	@Override
 	public String toString() {

@@ -13,10 +13,12 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.luisdbb.tarea3AD2024base.config.StageManager;
+import com.luisdbb.tarea3AD2024base.modelo.Carnet;
 import com.luisdbb.tarea3AD2024base.modelo.Credenciales;
 import com.luisdbb.tarea3AD2024base.modelo.Parada;
 import com.luisdbb.tarea3AD2024base.modelo.Peregrino;
 import com.luisdbb.tarea3AD2024base.modelo.PeregrinoParada;
+import com.luisdbb.tarea3AD2024base.repositorios.CarnetRepository;
 import com.luisdbb.tarea3AD2024base.services.AlertasServices;
 import com.luisdbb.tarea3AD2024base.services.CredencialesService;
 import com.luisdbb.tarea3AD2024base.services.ParadaService;
@@ -67,6 +69,9 @@ public class RegistroPeregrinoController implements Initializable{
 	@Autowired
 	private PeregrinoParadaService peregrinoParadaService;
 	
+	@Autowired
+	private CarnetRepository carnetRepository;
+	
 	@FXML
 	private void PulsaCrearPeregrino () {
 		String nombreCompleto = nombreField.getText();
@@ -101,6 +106,14 @@ public class RegistroPeregrinoController implements Initializable{
 				
 				PeregrinoParada pp = new PeregrinoParada(p, paradaP, fecha);
 				peregrinoParadaService.save(pp);
+				
+				Carnet carnet = new Carnet(fecha, 10.0 , 0);
+				carnetRepository.save(carnet);
+				
+				carnet.setParadaInicial(paradaP);
+				carnet.setPeregrino(p);
+				carnetRepository.save(carnet);
+				
 
 				
 			} else {

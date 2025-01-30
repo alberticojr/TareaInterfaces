@@ -13,6 +13,7 @@ public interface ParadaRespository extends JpaRepository<Parada, Long>{
 	
 	List <Parada> findAll();
 	Parada findByNombre(String nombre);
+	Parada findByResponsable(String nombre);
 	
 	@Query("""
 	        SELECT p FROM Parada p

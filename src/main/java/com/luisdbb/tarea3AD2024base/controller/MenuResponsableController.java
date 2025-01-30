@@ -23,6 +23,11 @@ public class MenuResponsableController implements Initializable{
     private StageManager stageManager;
 	
 	@FXML
+	private void pulsaExportar (ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.ExportarDatosParada);
+	} 
+	
+	@FXML
 	private void logout(ActionEvent event) throws IOException {
 		
 		LoginNuevoController.sesion.setNombre("invitado");

@@ -61,21 +61,21 @@ public class LoginNuevoController implements Initializable {
     		
     		if (perfilUsuario.equals("peregrino")) {
     			
-    			sesion.setNombre(perfilUsuario);
+    			sesion.setNombre(usufield.getText());
     			sesion.setPerfil("peregrino");
     			
     			stageManager.switchScene(FxmlView.MenuPeregrino);
     		}
     		else if (perfilUsuario.equals("parada")) {
     			
-    			sesion.setNombre(perfilUsuario);
+    			sesion.setNombre(usufield.getText());
     			sesion.setPerfil("parada");
     			
     			stageManager.switchScene(FxmlView.MenuResponsable);
     		}
     		else if (perfilUsuario.equals("administrador")) {
     			
-    			sesion.setNombre(perfilUsuario);
+    			sesion.setNombre(usufield.getText());
     			sesion.setPerfil("administrador");
     			
     			stageManager.switchScene(FxmlView.MenuAdministrador);

@@ -54,4 +54,8 @@ public class ParadaService {
 	public Parada findByNameAndRegion (String nombre, char region) {
 		return paradaRespository.findByNameAndRegion(nombre, region);
 	}
+	
+	public Parada findByResponsable (String nombre) {
+		return paradaRespository.findByResponsable(nombre);
+	}
 }
