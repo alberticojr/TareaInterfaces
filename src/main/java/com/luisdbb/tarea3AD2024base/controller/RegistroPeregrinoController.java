@@ -106,7 +106,7 @@ public class RegistroPeregrinoController implements Initializable{
 				
 				PeregrinoParada pp = new PeregrinoParada(p, paradaP, fecha);
 				peregrinoParadaService.save(pp);
-				
+
 				Carnet carnet = new Carnet(fecha, 10.0 , 0);
 				carnetRepository.save(carnet);
 				
@@ -114,7 +114,6 @@ public class RegistroPeregrinoController implements Initializable{
 				carnet.setPeregrino(p);
 				carnetRepository.save(carnet);
 				
-
 				
 			} else {
 				nombreField.setText(null);
