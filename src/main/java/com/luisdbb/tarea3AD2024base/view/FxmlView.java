@@ -90,6 +90,17 @@ public enum FxmlView {
 		public String getFxmlFile() {
 			return "/fxml/ExportarDatosParada.fxml";
 		}
+	},
+	SellarCarnet {
+		@Override
+		public String getTitle() {
+			return getStringFromResourceBundle("MenuResponsable.title");
+		}
+
+		@Override
+		public String getFxmlFile() {
+			return "/fxml/SellarCarnet.fxml";
+		}
 	};
 		
 
