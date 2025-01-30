@@ -56,4 +56,14 @@ public class CredencialesService {
 		}
 	}
 	
+	public boolean credencialExiste (String nombreUsu) {
+		Credenciales credencial = credencialesRepository.findByNombre(nombreUsu);
+		if (credencial == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
 }

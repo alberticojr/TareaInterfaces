@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import com.luisdbb.tarea3AD2024base.config.StageManager;
 import com.luisdbb.tarea3AD2024base.modelo.Credenciales;
 import com.luisdbb.tarea3AD2024base.modelo.Parada;
+import com.luisdbb.tarea3AD2024base.services.AlertasServices;
 import com.luisdbb.tarea3AD2024base.services.CredencialesService;
 import com.luisdbb.tarea3AD2024base.services.ParadaService;
+import com.luisdbb.tarea3AD2024base.services.ValidacionesService;
 import com.luisdbb.tarea3AD2024base.view.FxmlView;
 
 import javafx.event.ActionEvent;
@@ -46,18 +48,37 @@ public class RegistroParadaController implements Initializable{
 	private void pulsaCrearParada(ActionEvent event) throws IOException {
 		
 		String nombreParada = nombrePaField.getText();
-		char regionParada = regionPaField.getText().charAt(0);
+		
+		String region = regionPaField.getText();
 		String nombreResponsable = nombreReField.getText();
 		String contraResponsable = contraReField.getText();
 		
-		Credenciales c = new Credenciales(nombreResponsable, contraResponsable, "parada");
-		credencialeService.save(c);
+		boolean credencialesCorrectas = ValidacionesService.comprobarCredenciales(nombreResponsable, contraResponsable, nombreParada, region);
+		boolean responsableExiste = credencialeService.credencialExiste(nombreResponsable);
 		
-		Parada p = new Parada (nombreParada, regionParada, nombreResponsable);
-		paradaService.save(p);
-		
-		p.setCredenciales(c);
-		paradaService.save(p);
+			if (credencialesCorrectas) {
+				
+				char regionParada = regionPaField.getText().charAt(0);
+				boolean paradaExiste = paradaService.existeParada(nombreParada, regionParada);
+				
+				if (!paradaExiste) {
+					if (!responsableExiste) {
+						Credenciales cre = new Credenciales(nombreResponsable, contraResponsable, "parada");
+						credencialeService.save(cre);
+
+						Parada pa = new Parada(nombreParada, regionParada, nombreResponsable);
+						paradaService.save(pa);
+
+						pa.setCredenciales(cre);
+						paradaService.save(pa);
+					} else {
+						AlertasServices.altParadaExiste();
+						
+					}
+				}
+			} else {
+				AlertasServices.altUsuarioExiste();
+			}
 		
 	}
 	

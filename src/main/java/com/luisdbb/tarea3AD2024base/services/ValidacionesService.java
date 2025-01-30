@@ -8,11 +8,13 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+@Service
 public class ValidacionesService {
 
 	// METODO PARA LEER PAISES.XML Y ALMACENARLO EN UN MAP
@@ -43,31 +45,47 @@ public class ValidacionesService {
 	}
 
 	// METODO PARA COMPROBAR LAS CREDENCIALES
-	public static boolean comprobarCredenciales(String usuario, String contrasenia) {
+	public static boolean comprobarCredenciales(String usuario, String contrasenia, String nombreCompleto, String region) {
 
 		boolean credencialesCorrectas = true;
 
-		for (int i = 0; i < usuario.length(); i++) {
-			if (Character.isSpaceChar(usuario.charAt(i)) || Character.isDigit(usuario.charAt(i))) {
-				System.out.println("NO se pueden escribir ni espacios, ni numeros en el nombre.");
-				AlertasServices.altNombreConEspacioONumero();
-				credencialesCorrectas = false;
-				break;
+		if (usuario == null || usuario.length() == 0) {
+			AlertasServices.altNombreVacio();
+			credencialesCorrectas = false;
+		} else {
+			for (int i = 0; i < usuario.length(); i++) {
+				if (Character.isSpaceChar(usuario.charAt(i)) || Character.isDigit(usuario.charAt(i))) {
+					AlertasServices.altNombreConEspacioONumero();
+					credencialesCorrectas = false;
+					break;
+				}
+			}
+		}
+
+		if (contrasenia == null || contrasenia.length() == 0) {
+			AlertasServices.altContraVacia();
+			credencialesCorrectas = false;
+		} else {
+			for (int i = 0; i < contrasenia.length(); i++) {
+				if (Character.isSpaceChar(contrasenia.charAt(i))) {
+					AlertasServices.altContraConEspacio();
+					credencialesCorrectas = false;
+					break;
+				}
 			}
 		}
 		
-		for (int i = 0; i < contrasenia.length(); i++) {
-			if (Character.isSpaceChar(contrasenia.charAt(i))) {
-				System.out.println("NO se pueden escribir espacios en la contrasenia.");
-				AlertasServices.altContraConEspacio();
-				credencialesCorrectas = false;
-				break;
-			}
-		}
+		if (nombreCompleto == null || nombreCompleto.length() == 0) { AlertasServices.altNombreCompleto(); credencialesCorrectas = false;}
+		if (region == null || region.length() == 0) { AlertasServices.altRegionVacia(); credencialesCorrectas = false;}
+		return credencialesCorrectas;
+
+	}
+	
+	public static boolean comprobarTextField(String texto) {
 		
-		if (usuario.length() == 0) { AlertasServices.altNombreVacio(); credencialesCorrectas = false;}
+		boolean credencialesCorrectas = true;
 		
-		if (contrasenia.length() == 0) { AlertasServices.altContraVacia(); credencialesCorrectas = false;}
+		if (texto.length() == 0) { AlertasServices.altNombreVacio(); credencialesCorrectas = false;}
 		
 		return credencialesCorrectas;
 

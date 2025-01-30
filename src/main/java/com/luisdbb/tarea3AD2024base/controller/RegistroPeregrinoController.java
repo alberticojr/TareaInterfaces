@@ -28,6 +28,7 @@ import com.luisdbb.tarea3AD2024base.view.FxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
@@ -48,7 +49,10 @@ public class RegistroPeregrinoController implements Initializable{
 	private ChoiceBox <String> chbParada;
 	
 	@FXML
-	private ChoiceBox <String> chbPaises; 
+	private ChoiceBox <String> chbPaises;
+	
+	@FXML
+	private Button btnCrear;
 	
 	//DECLARACION DE SERVICIOS 
 	@Autowired
@@ -71,7 +75,7 @@ public class RegistroPeregrinoController implements Initializable{
 		String datosParada = chbParada.getValue();
 		String nacionalidad = chbPaises.getValue();
 		
-		boolean credencialesCorrectas = ValidacionesService.comprobarCredenciales(nombreUsuario, contraUsuario);
+		boolean credencialesCorrectas = ValidacionesService.comprobarCredenciales(nombreUsuario, contraUsuario,nombreCompleto, "a");
 		
 		String[] nombreYRegion = datosParada.split(" ");
 		String nombreParada = nombreYRegion[0];
@@ -90,13 +94,15 @@ public class RegistroPeregrinoController implements Initializable{
 				Peregrino p = new Peregrino(nombreUsuario, nacionalidad, nombreCompleto);
 				peregrinoService.save(p);
 
-				Date fecha = Date.valueOf(LocalDate.now());
+				p.setCredenciales(c);
+				peregrinoService.save(p);
 
+				Date fecha = Date.valueOf(LocalDate.now());
+				
 				PeregrinoParada pp = new PeregrinoParada(p, paradaP, fecha);
 				peregrinoParadaService.save(pp);
 
-				p.setCredenciales(c);
-				peregrinoService.save(p);
+				
 			} else {
 				nombreField.setText(null);
 				usuField.setText(null);
@@ -104,7 +110,7 @@ public class RegistroPeregrinoController implements Initializable{
 			}
 		}
 		else {
-			AlertasServices.altPeregrinoExiste();
+			AlertasServices.altUsuarioExiste();
 			nombreField.setText(null);
 			usuField.setText(null);
 			contraField.setText(null);
@@ -139,12 +145,23 @@ public class RegistroPeregrinoController implements Initializable{
 		
 		List <Parada> listaParadas = paradaService.findAll();
 		
-		for(Parada parada: listaParadas) {
-			chbParada.getItems().add(parada.getNombre()+" - "+parada.getRegion());
+		if (!listaParadas.isEmpty()) {
+			Parada pDefault = listaParadas.get(0);
+			chbParada.setValue(pDefault.getNombre()+" - "+pDefault.getRegion());
+			
+			for(Parada parada: listaParadas) {
+				chbParada.getItems().add(parada.getNombre()+" - "+parada.getRegion());
+			}
+		}
+		else {
+			AlertasServices.altNoParadas();
+			btnCrear.setDisable(true);
 		}
 		
+		
+		
 		chbPaises.setValue(map.get("ES"));
-		chbParada.setValue("gijon - g");
+		
 		
 	}
 	
