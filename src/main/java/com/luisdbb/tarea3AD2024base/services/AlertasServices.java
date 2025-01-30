@@ -37,11 +37,43 @@ public class AlertasServices {
         alert.showAndWait();
     }
 	
-	public static void altPeregrinoExiste() {
+	public static void altUsuarioExiste() {
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Usuario existente");
         alert.setHeaderText("Usuario existente");
-        alert.setContentText("El peregrino introducido ya existe");
+        alert.setContentText("El usuario introducido ya existe");
+        alert.showAndWait();
+    }
+	
+	public static void altParadaExiste() {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Parada existente");
+        alert.setHeaderText("Parada existente");
+        alert.setContentText("La parada introducida ya existe");
+        alert.showAndWait();
+    }
+	
+	public static void altRegionVacia() {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Region incorrecta");
+        alert.setHeaderText("Region incorrecta");
+        alert.setContentText("La region introducida es incorrecta o vacia");
+        alert.showAndWait();
+    }
+	
+	public static void altNombreCompleto() {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Nombre completo incorrecto");
+        alert.setHeaderText("Nombre completo incorrecto");
+        alert.setContentText("El nombre completo es incorrecto o esta vacio");
+        alert.showAndWait();
+    }
+	
+	public static void altNoParadas() {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("No hay paradas disponibles");
+        alert.setHeaderText("No hay paradas disponibles");
+        alert.setContentText("No hay paradas disponibles en el sistema para registrarse");
         alert.showAndWait();
     }
 
