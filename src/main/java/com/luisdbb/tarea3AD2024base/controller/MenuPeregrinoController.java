@@ -65,6 +65,7 @@ public class MenuPeregrinoController implements Initializable{
 	@FXML
 	private Label lblNacionalidad;
 	
+
 	@FXML
 	private void logout(ActionEvent event) throws IOException {
 		
@@ -214,6 +215,7 @@ public class MenuPeregrinoController implements Initializable{
 		}
 		catch (ParserConfigurationException ex) { System.out.println("Error: " + ex.getMessage()); }
 		catch (TransformerException e) { e.printStackTrace(); }
+
 		
 		AlertasServices.altExportacionCorrecta();
 	}
@@ -221,10 +223,12 @@ public class MenuPeregrinoController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		p = peregrinoService.findByNombre(LoginNuevoController.sesion.getNombre());
+
 		
 		lblId.setText(p.getId()+"");
 		lblNombreCom.setText(p.getNombre_completo());
 		lblNombreUsu.setText(p.getNombre());
 		lblNacionalidad.setText(p.getNacionalidad());
 	}
+
 }

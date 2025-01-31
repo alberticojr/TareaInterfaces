@@ -64,6 +64,7 @@ public class RegistroPeregrinoController implements Initializable{
 	@Autowired
 	private CredencialesService credencialeService;
 	
+
 	
 	@FXML
 	private void PulsaCrearPeregrino () {
@@ -87,8 +88,10 @@ public class RegistroPeregrinoController implements Initializable{
 			
 			if (credencialesCorrectas) {
 				
+
 				if (AlertasServices.altConfirmacion()) {
 					
+
 				Credenciales c = new Credenciales(nombreUsuario, contraUsuario, "peregrino");
 				credencialeService.save(c);
 
@@ -102,13 +105,13 @@ public class RegistroPeregrinoController implements Initializable{
 				
 				PeregrinoParada pp = new PeregrinoParada(p, paradaP, fecha);
 				p.getPeregrinoParada().add(pp);
-				
+
 				Carnet carnet = new Carnet(fecha, 10.0 , 0);
 				
 				carnet.setParadaInicial(paradaP);
 				carnet.setPeregrino(p);
 				p.setCarnet(carnet);
-				
+
 				peregrinoService.save(p);
 				
 				AlertasServices.altPeregrinoCreado();
