@@ -60,7 +60,7 @@ public class SellarCarnetController implements Initializable{
 	@FXML
 	private void pulsaSellar () {
 		
-		if (!peregrinoParadaService.existeParadaPeregrino(Date.valueOf(LocalDate.now()))) {
+		List <PeregrinoParada> listaPP = peregrinoParadaService.listaParadasPorFecha(Date.valueOf(LocalDate.now()));
 		
 		if (coBoxPeregrino != null && chBoxEstancia.isSelected() && chBoxVip.isSelected()) {
 			
@@ -69,6 +69,19 @@ public class SellarCarnetController implements Initializable{
 			
 			Peregrino peregrino = peregrinoService.findByNombre(nombrePeregrino);
 			
+			boolean selloRepetido = false;
+			
+			LocalDate fechaActual = LocalDate.now();
+			
+			for (PeregrinoParada PP: listaPP) {
+				LocalDate fechaPP = PP.getFecha().toLocalDate();
+				
+				if (fechaPP.isEqual(fechaActual) && PP.getPeregrino().getId() == peregrino.getId() && PP.getParada().getId() == parada.getId()) {
+					selloRepetido = true;
+				}
+			}
+			
+			if (!selloRepetido) {
 			PeregrinoParada PP = new PeregrinoParada(peregrino, parada, Date.valueOf(LocalDate.now()));
 			Estancia estancia = new Estancia(parada.getNombre(),Date.valueOf(LocalDate.now()), true, peregrino, parada);
 			
@@ -83,6 +96,10 @@ public class SellarCarnetController implements Initializable{
 			
 			
 			peregrinoService.save(peregrino);
+			}
+			else {
+				AlertasServices.altSellarInvalido();
+			}
 		}
 		
 		
@@ -93,6 +110,17 @@ public class SellarCarnetController implements Initializable{
 			
 			Peregrino peregrino = peregrinoService.findByNombre(nombrePeregrino);
 			
+			boolean selloRepetido = false;
+			LocalDate fechaActual = LocalDate.now();
+			
+			for (PeregrinoParada PP: listaPP) {
+				LocalDate fechaPP = PP.getFecha().toLocalDate();
+				if (fechaPP.isEqual(fechaActual) && PP.getPeregrino().getId() == peregrino.getId() && PP.getParada().getId() == parada.getId()) {
+					selloRepetido = true;
+				}
+			}
+			
+			if (!selloRepetido) {
 			PeregrinoParada PP = new PeregrinoParada(peregrino, parada, Date.valueOf(LocalDate.now()));
 			Estancia estancia = new Estancia(parada.getNombre(),Date.valueOf(LocalDate.now()), false, peregrino, parada);
 			
@@ -104,6 +132,10 @@ public class SellarCarnetController implements Initializable{
 			peregrino.getCarnet().setDistancia(distActual+10.0);
 			
 			peregrinoService.save(peregrino);
+			}
+			else {
+				AlertasServices.altSellarInvalido();
+			}
 			
 		}
 		else if (coBoxPeregrino != null) {
@@ -112,17 +144,29 @@ public class SellarCarnetController implements Initializable{
 			String nombrePeregrino = datosPeregrino[2];
 			
 			Peregrino peregrino = peregrinoService.findByNombre(nombrePeregrino);
+			
+			boolean selloRepetido = false;
+			LocalDate fechaActual = LocalDate.now();
+			
+			for (PeregrinoParada PP: listaPP) {
+				LocalDate fechaPP = PP.getFecha().toLocalDate();
+				if (fechaPP.isEqual(fechaActual) && PP.getPeregrino().getId() == peregrino.getId() && PP.getParada().getId() == parada.getId()) {
+					selloRepetido = true;
+				}
+			}
+			
+			if (!selloRepetido) {
 			PeregrinoParada PP = new PeregrinoParada(peregrino, parada, Date.valueOf(LocalDate.now()));
 			peregrino.getPeregrinoParada().add(PP);
 			
 			peregrinoService.save(peregrino);
+			}
+			else {
+				AlertasServices.altSellarInvalido();
+			}
 		}
 		else {
 			System.out.println("no se ha elegido a ningun usuario");
-		}
-		}
-		else {
-			AlertasServices.altSellarInvalido();
 		}
 		
 	}

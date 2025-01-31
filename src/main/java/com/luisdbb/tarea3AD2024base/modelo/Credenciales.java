@@ -1,5 +1,7 @@
 package com.luisdbb.tarea3AD2024base.modelo;
 
+import java.util.Objects;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -95,6 +97,25 @@ public class Credenciales {
 
 	public void setParada(Parada parada) {
 		this.parada = parada;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(contra, id, nombre, parada, peregrino, perfil);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Credenciales other = (Credenciales) obj;
+		return Objects.equals(contra, other.contra) && id == other.id && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(parada, other.parada) && Objects.equals(peregrino, other.peregrino)
+				&& Objects.equals(perfil, other.perfil);
 	}
 
 	

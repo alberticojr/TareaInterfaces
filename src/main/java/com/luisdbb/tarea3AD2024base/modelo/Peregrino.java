@@ -149,7 +149,8 @@ public class Peregrino {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nacionalidad, nombre);
+		return Objects.hash(carnet, credenciales, id, listaEstancia, nacionalidad, nombre, nombre_completo,
+				peregrinoParada);
 	}
 
 
@@ -162,8 +163,17 @@ public class Peregrino {
 		if (getClass() != obj.getClass())
 			return false;
 		Peregrino other = (Peregrino) obj;
-		return  Objects.equals(nacionalidad, other.nacionalidad)
-				&& Objects.equals(nombre, other.nombre);
+		return Objects.equals(carnet, other.carnet) && Objects.equals(credenciales, other.credenciales)
+				&& id == other.id && Objects.equals(listaEstancia, other.listaEstancia)
+				&& Objects.equals(nacionalidad, other.nacionalidad) && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(nombre_completo, other.nombre_completo)
+				&& Objects.equals(peregrinoParada, other.peregrinoParada);
 	}
+
+
+	
+
+
+	
 	
 }

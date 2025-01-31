@@ -47,5 +47,9 @@ public class PeregrinoParadaService {
 			return true;
 		}
 	}
+	
+	public List<PeregrinoParada> listaParadasPorFecha (Date fecha) {
+		return peregrinoParadaRepository.findByFecha(fecha);
+	}
 
 }

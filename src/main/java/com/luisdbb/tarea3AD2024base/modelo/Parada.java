@@ -107,10 +107,12 @@ public class Parada {
 		return "Parada [nombre=" + nombre + ", region=" + region + ", responsable=" + responsable + "]";
 	}
 
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(nombre, region, responsable);
+		return Objects.hash(carnet, credenciales, id, nombre, peregrinoParada, region, responsable);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -121,8 +123,12 @@ public class Parada {
 		if (getClass() != obj.getClass())
 			return false;
 		Parada other = (Parada) obj;
-		return Objects.equals(nombre, other.nombre)
-				&& region == other.region && Objects.equals(responsable, other.responsable);
+		return Objects.equals(carnet, other.carnet) && Objects.equals(credenciales, other.credenciales)
+				&& id == other.id && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(peregrinoParada, other.peregrinoParada) && region == other.region
+				&& Objects.equals(responsable, other.responsable);
 	}
+
+	
 	
 }
