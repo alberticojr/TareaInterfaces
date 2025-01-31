@@ -120,8 +120,8 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <DatePicker fx:id="DPfechaInicio" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <DatePicker fx:id="DPfechaFin" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <DatePicker fx:id="DPfechaInicio" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <DatePicker fx:id="DPfechaFin" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
                         <GridPane prefHeight="88.0" prefWidth="270.0">

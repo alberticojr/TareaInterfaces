@@ -19,10 +19,8 @@ import com.luisdbb.tarea3AD2024base.modelo.Parada;
 import com.luisdbb.tarea3AD2024base.modelo.Peregrino;
 import com.luisdbb.tarea3AD2024base.modelo.PeregrinoParada;
 import com.luisdbb.tarea3AD2024base.services.AlertasServices;
-import com.luisdbb.tarea3AD2024base.services.CarnetService;
 import com.luisdbb.tarea3AD2024base.services.CredencialesService;
 import com.luisdbb.tarea3AD2024base.services.ParadaService;
-import com.luisdbb.tarea3AD2024base.services.PeregrinoParadaService;
 import com.luisdbb.tarea3AD2024base.services.PeregrinoService;
 import com.luisdbb.tarea3AD2024base.services.ValidacionesService;
 import com.luisdbb.tarea3AD2024base.view.FxmlView;
@@ -66,11 +64,6 @@ public class RegistroPeregrinoController implements Initializable{
 	@Autowired
 	private CredencialesService credencialeService;
 	
-	@Autowired
-	private PeregrinoParadaService peregrinoParadaService;
-	
-	@Autowired
-	private CarnetService carnetService;
 	
 	@FXML
 	private void PulsaCrearPeregrino () {
@@ -93,6 +86,9 @@ public class RegistroPeregrinoController implements Initializable{
 		if (!peregrinoExiste) {
 			
 			if (credencialesCorrectas) {
+				
+				if (AlertasServices.altConfirmacion()) {
+					
 				Credenciales c = new Credenciales(nombreUsuario, contraUsuario, "peregrino");
 				credencialeService.save(c);
 
@@ -105,15 +101,26 @@ public class RegistroPeregrinoController implements Initializable{
 				Date fecha = Date.valueOf(LocalDate.now());
 				
 				PeregrinoParada pp = new PeregrinoParada(p, paradaP, fecha);
-				peregrinoParadaService.save(pp);
-
+				p.getPeregrinoParada().add(pp);
+				
 				Carnet carnet = new Carnet(fecha, 10.0 , 0);
-				carnetService.save(carnet);
 				
 				carnet.setParadaInicial(paradaP);
 				carnet.setPeregrino(p);
-				carnetService.save(carnet);
+				p.setCarnet(carnet);
 				
+				peregrinoService.save(p);
+				
+				AlertasServices.altPeregrinoCreado();
+				nombreField.setText(null);
+				usuField.setText(null);
+				contraField.setText(null);
+				}
+				else {
+					nombreField.setText(null);
+					usuField.setText(null);
+					contraField.setText(null);
+				}
 				
 			} else {
 				nombreField.setText(null);

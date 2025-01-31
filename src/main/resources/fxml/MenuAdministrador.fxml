@@ -37,7 +37,7 @@
                   </Label>
                </children>
             </FlowPane>
-            <GridPane prefHeight="181.0" prefWidth="800.0">
+            <GridPane prefHeight="238.0" prefWidth="800.0">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -46,12 +46,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button onAction="#pulsaCrear" mnemonicParsing="false" prefWidth="300.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Registrar nueva Parada" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#pulsaCrear" prefWidth="300.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Registrar nueva Parada" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Black" size="20.0" />
                      </font>
                   </Button>
-                  <Button onAction="#logout" mnemonicParsing="false" prefWidth="300.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Cerrar Sesión" textFill="WHITE" GridPane.rowIndex="1">
+                  <Button mnemonicParsing="false" onAction="#logout" prefWidth="300.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Cerrar Sesión" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font name="Segoe UI Black" size="20.0" />
                      </font>

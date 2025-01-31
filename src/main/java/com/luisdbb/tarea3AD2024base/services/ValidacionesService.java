@@ -76,6 +76,16 @@ public class ValidacionesService {
 		}
 		
 		if (nombreCompleto == null || nombreCompleto.length() == 0) { AlertasServices.altNombreCompleto(); credencialesCorrectas = false;}
+		else {
+		
+		for (int i = 0; i < nombreCompleto.length(); i++) {
+			if (Character.isDigit(nombreCompleto.charAt(i))) {
+				AlertasServices.altNombreCompletoConNumeros();
+				credencialesCorrectas = false;
+				break;
+			}
+		}
+		}
 		if (region == null || region.length() == 0) { AlertasServices.altRegionVacia(); credencialesCorrectas = false;}
 		return credencialesCorrectas;
 

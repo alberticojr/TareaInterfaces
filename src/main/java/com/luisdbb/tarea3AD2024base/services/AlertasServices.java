@@ -1,7 +1,10 @@
 package com.luisdbb.tarea3AD2024base.services;
 
+import java.util.Optional;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 public class AlertasServices {
 	
@@ -68,6 +71,13 @@ public class AlertasServices {
         alert.setContentText("El nombre completo es incorrecto o esta vacio");
         alert.showAndWait();
     }
+	public static void altNombreCompletoConNumeros() {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Nombre completo incorrecto");
+        alert.setHeaderText("Nombre completo incorrecto");
+        alert.setContentText("No se pueden introducir numeros en el nombre completo");
+        alert.showAndWait();
+    }
 	
 	public static void altNoParadas() {
         Alert alert = new Alert(AlertType.WARNING);
@@ -90,6 +100,69 @@ public class AlertasServices {
         alert.setHeaderText("Ya ha sellado en esta parada");
         alert.setContentText("No se puede sellar un carnet dos veces el mismo dia");
         alert.showAndWait();
+    }
+	public static void altPeregrinoCreado() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Peregrino creado");
+        alert.setHeaderText("Peregrino creado");
+        alert.setContentText("El peregrino se ha creado correctamente");
+        alert.showAndWait();
+    }
+	
+	public static void altParadaCreada() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Parada creada");
+        alert.setHeaderText("Parada creada");
+        alert.setContentText("La parada se ha creado correctamente");
+        alert.showAndWait();
+    }
+	public static void altExportacionCorrecta() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Exportación completada");
+        alert.setHeaderText("Exportación completada");
+        alert.setContentText("El carnet del peregrino se ha exportado correctamente");
+        alert.showAndWait();
+    }
+	public static void altSelladoCorrecto() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Sellado correcto");
+        alert.setHeaderText("sellado correcto");
+        alert.setContentText("Se ha sellado el carnet del peregrino correctamente");
+        alert.showAndWait();
+    }
+	
+	public static void altFechasAlReves() {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Fechas incorrectas");
+        alert.setHeaderText("Fechas incorrectas");
+        alert.setContentText("Has introducido las fechas en orden incorrecto");
+        alert.showAndWait();
+    }
+	
+	public static void altFechasIguales() {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Fechas iguales");
+        alert.setHeaderText("Fechas iguales");
+        alert.setContentText("Has introducido la misma fecha");
+        alert.showAndWait();
+    }
+	public static void altUsuarioNoElegido() {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Selecciona un usuario");
+        alert.setHeaderText("Selecciona un usuario");
+        alert.setContentText("No has seleccionado ningun usuario");
+        alert.showAndWait();
+    }
+	
+	public static boolean altConfirmacion() {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar datos");
+        alert.setHeaderText("¿Estás seguro?");
+        alert.setContentText("¿Esta satisfecho con los datos introducidos?");
+
+        Optional<ButtonType> resultado = alert.showAndWait();
+
+        return resultado.isPresent() && resultado.get() == ButtonType.OK;
     }
 
 }

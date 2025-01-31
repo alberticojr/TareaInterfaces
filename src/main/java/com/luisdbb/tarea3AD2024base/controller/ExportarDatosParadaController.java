@@ -13,6 +13,7 @@ import com.luisdbb.tarea3AD2024base.config.StageManager;
 import com.luisdbb.tarea3AD2024base.modelo.Estancia;
 import com.luisdbb.tarea3AD2024base.modelo.ListaEstancias;
 import com.luisdbb.tarea3AD2024base.modelo.Parada;
+import com.luisdbb.tarea3AD2024base.services.AlertasServices;
 import com.luisdbb.tarea3AD2024base.services.EstanciaService;
 import com.luisdbb.tarea3AD2024base.services.ParadaService;
 import com.luisdbb.tarea3AD2024base.view.FxmlView;
@@ -109,8 +110,8 @@ public class ExportarDatosParadaController implements Initializable{
 			}
 			TblEstancias.setItems(listaEstanciasFiltrada);
 		}
-		else if (fechaInicioDP.equals(fechaFinDP)) {System.out.println("alerta fechas iguales");}
-		else { System.out.println("alerta fecha mal puesta"); }
+		else if (fechaInicioDP.equals(fechaFinDP)) { AlertasServices.altFechasIguales(); }
+		else { AlertasServices.altFechasAlReves(); }
 	}
 	
 	@FXML

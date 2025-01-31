@@ -26,9 +26,8 @@ public class Parada {
 	@JoinColumn
 	private Credenciales credenciales;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-	private Carnet carnet;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "paradaInicial")
+    private List<Carnet> carnets = new ArrayList<>();
 	
 	
 	//CONSTRUCTORES
@@ -110,7 +109,7 @@ public class Parada {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(carnet, credenciales, id, nombre, peregrinoParada, region, responsable);
+		return Objects.hash(carnets, credenciales, id, nombre, peregrinoParada, region, responsable);
 	}
 
 
@@ -123,11 +122,14 @@ public class Parada {
 		if (getClass() != obj.getClass())
 			return false;
 		Parada other = (Parada) obj;
-		return Objects.equals(carnet, other.carnet) && Objects.equals(credenciales, other.credenciales)
+		return Objects.equals(carnets, other.carnets) && Objects.equals(credenciales, other.credenciales)
 				&& id == other.id && Objects.equals(nombre, other.nombre)
 				&& Objects.equals(peregrinoParada, other.peregrinoParada) && region == other.region
 				&& Objects.equals(responsable, other.responsable);
 	}
+
+
+	
 
 	
 	

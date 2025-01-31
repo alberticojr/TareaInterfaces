@@ -160,13 +160,16 @@ public class SellarCarnetController implements Initializable{
 			peregrino.getPeregrinoParada().add(PP);
 			
 			peregrinoService.save(peregrino);
+			
+			AlertasServices.altSelladoCorrecto();
+			
 			}
 			else {
 				AlertasServices.altSellarInvalido();
 			}
 		}
 		else {
-			System.out.println("no se ha elegido a ningun usuario");
+			AlertasServices.altNoPeregrinos();
 		}
 		
 	}

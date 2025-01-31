@@ -63,6 +63,8 @@ public class RegistroParadaController implements Initializable{
 				
 				if (!paradaExiste) {
 					if (!responsableExiste) {
+						if (AlertasServices.altConfirmacion()) {
+						
 						Credenciales cre = new Credenciales(nombreResponsable, contraResponsable, "parada");
 						credencialeService.save(cre);
 
@@ -71,13 +73,33 @@ public class RegistroParadaController implements Initializable{
 
 						pa.setCredenciales(cre);
 						paradaService.save(pa);
-					} else {
-						AlertasServices.altParadaExiste();
 						
+						AlertasServices.altParadaCreada();
+						nombrePaField.setText(null);
+						regionPaField.setText(null);
+						nombreReField.setText(null);
+						contraReField.setText(null);
+						}
+						else {
+							nombrePaField.setText(null);
+							regionPaField.setText(null);
+							nombreReField.setText(null);
+							contraReField.setText(null);
+						}
+						
+					} else {
+						AlertasServices.altUsuarioExiste();
+						nombreReField.setText(null);
+						contraReField.setText(null);
 					}
 				}
+				else {
+					AlertasServices.altParadaExiste();
+					nombrePaField.setText(null);
+					regionPaField.setText(null);
+				}
 			} else {
-				AlertasServices.altUsuarioExiste();
+					
 			}
 		
 	}

@@ -20,9 +20,9 @@ public class Carnet {
 	@JoinColumn
 	private Peregrino peregrino;
 	
-	@OneToOne(cascade=CascadeType.MERGE)
-	@JoinColumn
-	private Parada paradaInicial;
+	@ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "parada_id") 
+    private Parada paradaInicial;
 	
 	
 	//CONSTRUCTOR

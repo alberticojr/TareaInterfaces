@@ -6,7 +6,7 @@ public enum FxmlView {
 	USER {
 		@Override
 		public String getTitle() {
-			return getStringFromResourceBundle("user.title");
+			return getStringFromResourceBundle("tituloGeneral.title");
 		}
 
 		@Override
@@ -17,7 +17,7 @@ public enum FxmlView {
 	LOGIN {
 		@Override
 		public String getTitle() {
-			return getStringFromResourceBundle("login.title");
+			return getStringFromResourceBundle("tituloGeneral.title");
 		}
 
 		@Override
@@ -28,7 +28,7 @@ public enum FxmlView {
 	MenuPeregrino {
 		@Override
 		public String getTitle() {
-			return getStringFromResourceBundle("MenuPeregrino.title");
+			return getStringFromResourceBundle("tituloGeneral.title");
 		}
 
 		@Override
@@ -39,7 +39,7 @@ public enum FxmlView {
 	MenuResponsable {
 		@Override
 		public String getTitle() {
-			return getStringFromResourceBundle("MenuResponsable.title");
+			return getStringFromResourceBundle("tituloGeneral.title");
 		}
 
 		@Override
@@ -50,7 +50,7 @@ public enum FxmlView {
 	MenuAdministrador {
 		@Override
 		public String getTitle() {
-			return getStringFromResourceBundle("MenuResponsable.title");
+			return getStringFromResourceBundle("tituloGeneral.title");
 		}
 
 		@Override
@@ -61,7 +61,7 @@ public enum FxmlView {
 	RegistroPeregrino {
 		@Override
 		public String getTitle() {
-			return getStringFromResourceBundle("MenuResponsable.title");
+			return getStringFromResourceBundle("tituloGeneral.title");
 		}
 
 		@Override
@@ -72,7 +72,7 @@ public enum FxmlView {
 	RegistroParada {
 		@Override
 		public String getTitle() {
-			return getStringFromResourceBundle("MenuResponsable.title");
+			return getStringFromResourceBundle("tituloGeneral.title");
 		}
 
 		@Override
@@ -83,7 +83,7 @@ public enum FxmlView {
 	ExportarDatosParada {
 		@Override
 		public String getTitle() {
-			return getStringFromResourceBundle("MenuResponsable.title");
+			return getStringFromResourceBundle("tituloGeneral.title");
 		}
 
 		@Override
@@ -94,7 +94,7 @@ public enum FxmlView {
 	SellarCarnet {
 		@Override
 		public String getTitle() {
-			return getStringFromResourceBundle("MenuResponsable.title");
+			return getStringFromResourceBundle("tituloGeneral.title");
 		}
 
 		@Override
