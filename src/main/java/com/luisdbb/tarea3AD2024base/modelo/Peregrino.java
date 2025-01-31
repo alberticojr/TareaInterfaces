@@ -29,7 +29,7 @@ public class Peregrino {
     @PrimaryKeyJoinColumn
 	private Carnet carnet;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn
 	private Credenciales credenciales;
 	
@@ -57,7 +57,16 @@ public class Peregrino {
 		this.nombre_completo = nombre_completo;
 	}
 	
-
+	public Peregrino(String nombre_completo, String nombre, String nacionalidad, List<PeregrinoParada> peregrinoParada,
+			Carnet carnet, Credenciales credenciales) {
+		super();
+		this.nombre_completo = nombre_completo;
+		this.nombre = nombre;
+		this.nacionalidad = nacionalidad;
+		this.peregrinoParada = peregrinoParada;
+		this.carnet = carnet;
+		this.credenciales = credenciales;
+	}
 
 
 	//GETTERS Y SETTERS

@@ -82,7 +82,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" prefWidth="300.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Exportar Carnet" textFill="WHITE" GridPane.rowIndex="2">
+                        <Button onAction="#exportarCarnet" mnemonicParsing="false" prefWidth="300.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Exportar Carnet" textFill="WHITE" GridPane.rowIndex="2">
                            <font>
                               <Font name="Segoe UI Black" size="20.0" />
                            </font>
