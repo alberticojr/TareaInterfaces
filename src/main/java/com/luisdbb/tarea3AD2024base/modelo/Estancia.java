@@ -32,7 +32,15 @@ public class Estancia {
 		this.vip = vip;
 	}
 	
-	
+	public Estancia(String nombreParada, Date fecha, boolean vip, Peregrino peregrino, Parada parada) {
+		super();
+		this.nombreParada = nombreParada;
+		this.fecha = fecha;
+		this.vip = vip;
+		this.peregrino = peregrino;
+		this.parada = parada;
+	}
+
 
 	public Estancia(String nombreParada, boolean vip) {
 		super();

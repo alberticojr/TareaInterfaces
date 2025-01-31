@@ -19,10 +19,10 @@ public class Peregrino {
 	private String nombre;
 	private String nacionalidad;
 	
-	@OneToMany(cascade = {CascadeType.ALL},mappedBy="peregrino")
+	@OneToMany(cascade = {CascadeType.ALL},mappedBy="peregrino",fetch = FetchType.EAGER)
     private List <PeregrinoParada> peregrinoParada = new ArrayList<>();
 	
-	@OneToMany(mappedBy="peregrino",cascade= CascadeType.ALL)
+	@OneToMany(mappedBy="peregrino",cascade= CascadeType.ALL,fetch = FetchType.EAGER)
 	private List <Estancia> listaEstancia = new ArrayList<>();
 	
 	@OneToOne(cascade=CascadeType.ALL)

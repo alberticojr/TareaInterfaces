@@ -76,5 +76,20 @@ public class AlertasServices {
         alert.setContentText("No hay paradas disponibles en el sistema para registrarse");
         alert.showAndWait();
     }
+	
+	public static void altNoPeregrinos() {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("No hay peregrinos disponibles");
+        alert.setHeaderText("No hay peregrinos disponibles");
+        alert.setContentText("No hay peregrinos disponibles en el sistema para sellar");
+        alert.showAndWait();
+    }
+	public static void altSellarInvalido() {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Sellado invalido");
+        alert.setHeaderText("Ya ha sellado en esta parada");
+        alert.setContentText("No se puede sellar un carnet dos veces el mismo dia");
+        alert.showAndWait();
+    }
 
 }

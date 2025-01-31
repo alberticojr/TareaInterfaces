@@ -49,5 +49,9 @@ public class PeregrinoService {
 		}
 		
 	}
+	
+	public Peregrino findByNombre (String nombre) {
+		return peregrinoRepository.findByNombre(nombre);
+	}
 
 }

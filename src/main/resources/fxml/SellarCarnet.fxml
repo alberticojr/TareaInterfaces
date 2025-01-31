@@ -78,9 +78,9 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox prefWidth="150.0" GridPane.columnIndex="1" />
-                              <CheckBox mnemonicParsing="false" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <CheckBox mnemonicParsing="false" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ComboBox fx:id ="coBoxPeregrino" prefWidth="150.0" GridPane.columnIndex="1" />
+                              <CheckBox fx:id ="chBoxEstancia" mnemonicParsing="false" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <CheckBox fx:id ="chBoxVip" mnemonicParsing="false" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                         <GridPane prefHeight="97.0" prefWidth="446.0">
@@ -92,7 +92,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button mnemonicParsing="false" onAction="#pulsaSellar" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Sellar" textFill="WHITE">
+                              <Button fx:id="btnSellar" mnemonicParsing="false" onAction="#pulsaSellar" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Sellar" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Black" size="14.0" />
                                  </font>

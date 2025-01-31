@@ -16,11 +16,11 @@ public class Carnet {
 	private Double distancia = 0.0;
 	private int nvips = 0;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn
 	private Peregrino peregrino;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn
 	private Parada paradaInicial;
 	

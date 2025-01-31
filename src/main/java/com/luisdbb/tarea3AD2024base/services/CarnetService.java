@@ -8,11 +8,23 @@ import org.springframework.stereotype.Service;
 import com.luisdbb.tarea3AD2024base.modelo.Carnet;
 import com.luisdbb.tarea3AD2024base.repositorios.CarnetRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
+
 @Service
 public class CarnetService {
 	
 	@Autowired
 	private CarnetRepository carnetRepository;
+	
+	@Autowired
+	private EntityManager entityManager;
+	
+	@Transactional
+	public Carnet actualizar(Carnet carnet) {
+		return entityManager.merge(carnet);
+		
+	}
 	
 	public Carnet save(Carnet entity) {
 		return carnetRepository.save(entity);

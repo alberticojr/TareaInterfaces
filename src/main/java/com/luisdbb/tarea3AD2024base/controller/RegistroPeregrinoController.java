@@ -18,8 +18,8 @@ import com.luisdbb.tarea3AD2024base.modelo.Credenciales;
 import com.luisdbb.tarea3AD2024base.modelo.Parada;
 import com.luisdbb.tarea3AD2024base.modelo.Peregrino;
 import com.luisdbb.tarea3AD2024base.modelo.PeregrinoParada;
-import com.luisdbb.tarea3AD2024base.repositorios.CarnetRepository;
 import com.luisdbb.tarea3AD2024base.services.AlertasServices;
+import com.luisdbb.tarea3AD2024base.services.CarnetService;
 import com.luisdbb.tarea3AD2024base.services.CredencialesService;
 import com.luisdbb.tarea3AD2024base.services.ParadaService;
 import com.luisdbb.tarea3AD2024base.services.PeregrinoParadaService;
@@ -70,7 +70,7 @@ public class RegistroPeregrinoController implements Initializable{
 	private PeregrinoParadaService peregrinoParadaService;
 	
 	@Autowired
-	private CarnetRepository carnetRepository;
+	private CarnetService carnetService;
 	
 	@FXML
 	private void PulsaCrearPeregrino () {
@@ -108,11 +108,11 @@ public class RegistroPeregrinoController implements Initializable{
 				peregrinoParadaService.save(pp);
 
 				Carnet carnet = new Carnet(fecha, 10.0 , 0);
-				carnetRepository.save(carnet);
+				carnetService.save(carnet);
 				
 				carnet.setParadaInicial(paradaP);
 				carnet.setPeregrino(p);
-				carnetRepository.save(carnet);
+				carnetService.save(carnet);
 				
 				
 			} else {

@@ -1,5 +1,6 @@
 package com.luisdbb.tarea3AD2024base.services;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,15 @@ public class PeregrinoParadaService {
 
 	public List<PeregrinoParada> findAll() {
 		return peregrinoParadaRepository.findAll();
+	}
+	
+	public boolean existeParadaPeregrino (Date fecha) {
+		if (peregrinoParadaRepository.findByFecha(fecha) == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 }
