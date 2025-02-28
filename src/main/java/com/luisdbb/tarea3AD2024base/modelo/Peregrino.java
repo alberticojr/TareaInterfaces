@@ -59,7 +59,6 @@ public class Peregrino {
 	}
 	
 	
-	
 	public Peregrino( String nombre, String nacionalidad, String nombre_completo, String correo) {
 		super();
 		this.nombre_completo = nombre_completo;
