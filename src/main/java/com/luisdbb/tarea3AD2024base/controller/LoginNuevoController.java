@@ -16,9 +16,17 @@ import com.luisdbb.tarea3AD2024base.view.FxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.web.WebView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
 
 
 @Controller
@@ -41,6 +49,9 @@ public class LoginNuevoController implements Initializable {
 	@FXML
 	private Hyperlink hplinkRegistrarse;
 	
+	@FXML
+	private Button btnAyuda;
+	
 	@Autowired
     private CredencialesService credencialesService;
 	
@@ -55,6 +66,14 @@ public class LoginNuevoController implements Initializable {
 	
 	@FXML
     private void login(ActionEvent event) throws IOException{
+		if (usufield.getText().equals("admin") && contrafield.getText().equals("admin")) {
+			
+			sesion.setNombre(usufield.getText());
+			sesion.setPerfil("administrador");
+			
+			stageManager.switchScene(FxmlView.MenuAdministrador);
+		}
+		else {
     	if(credencialesService.authenticate(usufield.getText(), contrafield.getText())){
     		
     		String perfilUsuario = credencialesService.findByNombre(usufield.getText()).getPerfil();
@@ -73,22 +92,48 @@ public class LoginNuevoController implements Initializable {
     			
     			stageManager.switchScene(FxmlView.MenuResponsable);
     		}
-    		else if (perfilUsuario.equals("administrador")) {
-    			
-    			sesion.setNombre(usufield.getText());
-    			sesion.setPerfil("administrador");
-    			
-    			stageManager.switchScene(FxmlView.MenuAdministrador);
-    		}
-    		
+
     	}else{
     		lblIncorrecto1.setVisible(true);
     		lblIncorrecto2.setVisible(true);
     	}
+		}
+		
     }
+	
+	@FXML
+	private void pulsaAyuda () {
+		try {
+			WebView webView = new WebView();
+			
+			String url = getClass().getResource("/ayuda/MenuPrincipal.html").toExternalForm();
+			webView.getEngine().load(url);
+			
+			Stage helpStage = new Stage();
+			helpStage.setTitle("Ayuda");
+			
+			Scene helpScene = new Scene (webView, 850, 520);
+			
+			helpStage.setScene(helpScene);
+			
+			helpStage.initModality(Modality.APPLICATION_MODAL);
+			helpStage.setResizable(true);
+			helpStage.show();
+			
+			
+		}
+		catch (NullPointerException e) {
+			System.out.print("No se ha encontrado el HTML");
+		}
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		URL linkAyuda = getClass().getResource("/images/iconos/informacion.png");
+		Image imgAyuda = new Image(linkAyuda.toString(),30, 30, false, true);
+		
+		btnAyuda.setGraphic(new ImageView(imgAyuda));
 		
 	}
 }

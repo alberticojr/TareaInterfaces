@@ -17,6 +17,7 @@ public class Peregrino {
 	
 	private String nombre_completo;
 	private String nombre;
+	private String correo;
 	private String nacionalidad;
 	
 	@OneToMany(cascade = {CascadeType.ALL},mappedBy="peregrino",fetch = FetchType.EAGER)
@@ -29,7 +30,7 @@ public class Peregrino {
     @PrimaryKeyJoinColumn
 	private Carnet carnet;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn
 	private Credenciales credenciales;
 	
@@ -57,7 +58,27 @@ public class Peregrino {
 		this.nombre_completo = nombre_completo;
 	}
 	
+	
+	
+	public Peregrino( String nombre, String nacionalidad, String nombre_completo, String correo) {
+		super();
+		this.nombre_completo = nombre_completo;
+		this.nombre = nombre;
+		this.correo = correo;
+		this.nacionalidad = nacionalidad;
+	}
 
+
+	public Peregrino(String nombre_completo, String nombre, String nacionalidad, List<PeregrinoParada> peregrinoParada,
+			Carnet carnet, Credenciales credenciales) {
+		super();
+		this.nombre_completo = nombre_completo;
+		this.nombre = nombre;
+		this.nacionalidad = nacionalidad;
+		this.peregrinoParada = peregrinoParada;
+		this.carnet = carnet;
+		this.credenciales = credenciales;
+	}
 
 
 	//GETTERS Y SETTERS
@@ -137,6 +158,15 @@ public class Peregrino {
 
 	public void setCredenciales(Credenciales credenciales) {
 		this.credenciales = credenciales;
+	}
+	
+	public String getCorreo() {
+		return correo;
+	}
+
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
 

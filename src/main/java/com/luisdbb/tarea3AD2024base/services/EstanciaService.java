@@ -38,5 +38,8 @@ public class EstanciaService {
 		return estanciaRepository.findAll();
 	}
 	
+	public Long findLastId () {
+		return estanciaRepository.findLastId();
+	}
 
 }

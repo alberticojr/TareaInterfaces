@@ -17,14 +17,15 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.luisdbb.tarea3AD2024base.controller.LoginNuevoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="850.0" stylesheets="@../styles/EstiloClaro.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.luisdbb.tarea3AD2024base.controller.LoginNuevoController">
+   
    <children>
       <ImageView fitHeight="520.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/fondos%20app/grad1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="520.0" fitWidth="850.0" opacity="0.25" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="520.0" fitWidth="850.0" opacity="0.25" pickOnBounds="true" preserveRatio="true" styleClass="fondo2">
          <image>
             <Image url="@../images/fondos%20app/slice1.png" />
          </image>
@@ -49,8 +50,8 @@
                         <Font name="Segoe UI Black" size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id ="lblIncorrecto1" text="Nombre de usuario o contrasena incorrectos" textFill="RED" visible="false" />
-                  <Label fx:id ="lblIncorrecto2" text="Pruebe otra vez" textFill="RED" visible="false" />
+                  <Label fx:id="lblIncorrecto1" text="Nombre de usuario o contrasena incorrectos" textFill="RED" visible="false" />
+                  <Label fx:id="lblIncorrecto2" text="Pruebe otra vez" textFill="RED" visible="false" />
                </children>
             </VBox>
             <GridPane prefHeight="118.0" prefWidth="330.0">
@@ -96,16 +97,17 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Hyperlink onAction = "#pulsaRegistrarse" text="¿No tienes cuenta todavia?" />
+                  <Hyperlink onAction="#pulsaRegistrarse" text="¿No tienes cuenta todavia?" />
                   <Hyperlink text="¿Has olvidado tu contraseña?" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <FlowPane alignment="BOTTOM_CENTER" prefHeight="38.0" prefWidth="330.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#login" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Iniciar sesion" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#login" style="-fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" styleClass="button" text="Iniciar sesion" textFill="WHITE" />
                </children>
             </FlowPane>
          </children>
       </VBox>
+      <Button fx:id = "btnAyuda" layoutX="786.0" layoutY="14.0" mnemonicParsing="false" onAction="#pulsaAyuda" style="-fx-background-color: white;" />
    </children>
 </AnchorPane>

@@ -19,10 +19,8 @@ import com.luisdbb.tarea3AD2024base.modelo.Parada;
 import com.luisdbb.tarea3AD2024base.modelo.Peregrino;
 import com.luisdbb.tarea3AD2024base.modelo.PeregrinoParada;
 import com.luisdbb.tarea3AD2024base.services.AlertasServices;
-import com.luisdbb.tarea3AD2024base.services.CarnetService;
 import com.luisdbb.tarea3AD2024base.services.CredencialesService;
 import com.luisdbb.tarea3AD2024base.services.ParadaService;
-import com.luisdbb.tarea3AD2024base.services.PeregrinoParadaService;
 import com.luisdbb.tarea3AD2024base.services.PeregrinoService;
 import com.luisdbb.tarea3AD2024base.services.ValidacionesService;
 import com.luisdbb.tarea3AD2024base.view.FxmlView;
@@ -30,12 +28,19 @@ import com.luisdbb.tarea3AD2024base.view.FxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.web.WebView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 @Controller
 public class RegistroPeregrinoController implements Initializable{
+	
 	
 	
 	@FXML
@@ -46,6 +51,12 @@ public class RegistroPeregrinoController implements Initializable{
 	
 	@FXML
 	private TextField contraField;
+	
+	@FXML
+	private TextField conf_Contra;
+	
+	@FXML
+	private TextField correo;
 	
 	@FXML
 	private ChoiceBox <String> chbParada;
@@ -66,68 +77,96 @@ public class RegistroPeregrinoController implements Initializable{
 	@Autowired
 	private CredencialesService credencialeService;
 	
-	@Autowired
-	private PeregrinoParadaService peregrinoParadaService;
-	
-	@Autowired
-	private CarnetService carnetService;
 	
 	@FXML
-	private void PulsaCrearPeregrino () {
+	private void PulsaCrearPeregrino() {
 		String nombreCompleto = nombreField.getText();
 		String nombreUsuario = usuField.getText();
 		String contraUsuario = contraField.getText();
+		String contraRep = conf_Contra.getText();
+		String correoE = correo.getText();
 		String datosParada = chbParada.getValue();
 		String nacionalidad = chbPaises.getValue();
-		
-		boolean credencialesCorrectas = ValidacionesService.comprobarCredenciales(nombreUsuario, contraUsuario,nombreCompleto, "a");
-		
+
+		boolean credencialesCorrectas = ValidacionesService.comprobarCredenciales(nombreUsuario, contraUsuario,
+				nombreCompleto, "a");
+
 		String[] nombreYRegion = datosParada.split(" ");
 		String nombreParada = nombreYRegion[0];
 		char regionParada = nombreYRegion[2].charAt(0);
-		
+
 		Parada paradaP = paradaService.findByNameAndRegion(nombreParada, regionParada);
-		
+
 		boolean peregrinoExiste = peregrinoService.existePeregrino(nombreUsuario);
-		
+		boolean correoValido = ValidacionesService.validacionCorreo(correoE);
+
 		if (!peregrinoExiste) {
-			
-			if (credencialesCorrectas) {
-				Credenciales c = new Credenciales(nombreUsuario, contraUsuario, "peregrino");
-				credencialeService.save(c);
 
-				Peregrino p = new Peregrino(nombreUsuario, nacionalidad, nombreCompleto);
-				peregrinoService.save(p);
+			if (correoValido && correoE != null) {
 
-				p.setCredenciales(c);
-				peregrinoService.save(p);
+				if (contraUsuario.equals(contraRep)) {
 
-				Date fecha = Date.valueOf(LocalDate.now());
-				
-				PeregrinoParada pp = new PeregrinoParada(p, paradaP, fecha);
-				peregrinoParadaService.save(pp);
+					if (credencialesCorrectas) {
 
-				Carnet carnet = new Carnet(fecha, 10.0 , 0);
-				carnetService.save(carnet);
-				
-				carnet.setParadaInicial(paradaP);
-				carnet.setPeregrino(p);
-				carnetService.save(carnet);
-				
-				
+						if (AlertasServices.altConfirmacion()) {
+
+							Credenciales c = new Credenciales(nombreUsuario, contraUsuario, "peregrino");
+							credencialeService.save(c);
+
+							Peregrino p = new Peregrino(nombreUsuario, nacionalidad, nombreCompleto, correoE);
+							peregrinoService.save(p);
+
+							p.setCredenciales(c);
+							peregrinoService.save(p);
+
+							Date fecha = Date.valueOf(LocalDate.now());
+
+							PeregrinoParada pp = new PeregrinoParada(p, paradaP, fecha);
+							p.getPeregrinoParada().add(pp);
+
+							Carnet carnet = new Carnet(fecha, 10.0, 0);
+
+							carnet.setParadaInicial(paradaP);
+							carnet.setPeregrino(p);
+							p.setCarnet(carnet);
+
+							peregrinoService.save(p);
+
+							AlertasServices.altPeregrinoCreado();
+							nombreField.setText(null);
+							usuField.setText(null);
+							contraField.setText(null);
+							conf_Contra.setText(null);
+							correo.setText(null);
+							
+						} else {
+							nombreField.setText(null);
+							usuField.setText(null);
+							contraField.setText(null);
+						}
+
+					} else {
+						nombreField.setText(null);
+						usuField.setText(null);
+						contraField.setText(null);
+					}
+				} else {
+					AlertasServices.altContrasNoCoinciden();
+					contraField.setText(null);
+					conf_Contra.setText(null);
+				}
+
 			} else {
-				nombreField.setText(null);
-				usuField.setText(null);
-				contraField.setText(null);
+				AlertasServices.altCorreoIncorrecto();
+				correo.setText(null);
 			}
-		}
-		else {
+		} else {
 			AlertasServices.altUsuarioExiste();
 			nombreField.setText(null);
 			usuField.setText(null);
 			contraField.setText(null);
 		}
-		
+
 	}
 	
 	
@@ -144,8 +183,42 @@ public class RegistroPeregrinoController implements Initializable{
 		stageManager.switchScene(FxmlView.LOGIN);
 	}
 	
+	@FXML
+	private void pulsaAyuda () {
+		try {
+			WebView webView = new WebView();
+			
+			String url = getClass().getResource("/ayuda/MenuPrincipal.html").toExternalForm();
+			webView.getEngine().load(url);
+			
+			Stage helpStage = new Stage();
+			helpStage.setTitle("Ayuda");
+			
+			Scene helpScene = new Scene (webView, 850, 520);
+			
+			helpStage.setScene(helpScene);
+			
+			helpStage.initModality(Modality.APPLICATION_MODAL);
+			helpStage.setResizable(true);
+			helpStage.show();
+			
+			
+		}
+		catch (NullPointerException e) {
+			System.out.print("No se ha encontrado el HTML");
+		}
+	}
+	
+	@FXML
+	private Button btnAyuda;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		URL linkAyuda = getClass().getResource("/images/iconos/informacion.png");
+		Image imgAyuda = new Image(linkAyuda.toString(),30, 30, false, true);
+		
+		btnAyuda.setGraphic(new ImageView(imgAyuda));
 		
 		ValidacionesService.almacenarEnMap();
 		HashMap <String, String> map = ValidacionesService.diccionarioPaises;

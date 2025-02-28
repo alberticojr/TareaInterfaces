@@ -23,6 +23,7 @@ public class Estancia {
 	@ManyToOne
     @JoinColumn(name="IdParada")
 	private Parada parada;
+	
 
 	//CONSTRUCTOR
 	public Estancia(String nombreParada, Date fecha, boolean vip) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -9,18 +10,20 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.luisdbb.tarea3AD2024base.controller.MenuResponsableController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="850.0" stylesheets="@../styles/EstiloClaro.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.luisdbb.tarea3AD2024base.controller.MenuResponsableController">
    <children>
       <ImageView fitHeight="520.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/fondos%20app/grad1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="520.0" fitWidth="850.0" opacity="0.25" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="520.0" fitWidth="850.0" opacity="0.25" pickOnBounds="true" preserveRatio="true" styleClass="fondo2">
          <image>
             <Image url="@../images/fondos%20app/slice1.png" />
          </image>
@@ -30,11 +33,20 @@
          <children>
             <FlowPane alignment="CENTER" prefHeight="67.0" prefWidth="796.0">
                <children>
-                  <Label text="BIENVENIDO RESPONSABLE" textFill="WHITE">
+                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="720.0" text="BIENVENIDO RESPONSABLE" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Black" size="30.0" />
                      </font>
                   </Label>
+                  <FlowPane alignment="CENTER" prefHeight="75.0" prefWidth="46.0">
+                     <children>
+                        <Button fx:id="btnAyuda" mnemonicParsing="false" onAction="#pulsaAyuda" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: white;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                     </children>
+                  </FlowPane>
                </children>
             </FlowPane>
             <GridPane prefHeight="374.0" prefWidth="796.0">
@@ -46,28 +58,71 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Nombre de Parada:" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Black" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Nombre de usuario:" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Black" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Región:" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Black" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Id:" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Black" size="20.0" />
-                           </font>
-                        </Label>
+                        <StackPane prefHeight="370.0" prefWidth="398.0">
+                           <children>
+                              <Polygon fill="#1f93ff00" points="165.0, -275.0, 0.0, -330.0, -165.0, -275.0, -165.0, -35.0, 0.0, 20.0, 165.0, -35.0" stroke="#38bada" strokeType="INSIDE" strokeWidth="2.0" />
+                              <GridPane prefHeight="209.0" prefWidth="398.0">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="65.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="198.0" />
+                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="65.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Id de parada:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Nombre de usuario:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblNombreUsu" text="----" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="Segoe UI" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Nombre de Parada:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblNombrePar" text="----" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="Segoe UI" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Región:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblRegion" text="----" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="Segoe UI" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblId" text="----" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Segoe UI" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </StackPane>
                      </children>
                   </VBox>
                   <GridPane GridPane.columnIndex="1">
@@ -80,19 +135,25 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button onAction="#pulsaSellar" mnemonicParsing="false" prefWidth="300.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Sellar Carnet" textFill="WHITE" GridPane.rowIndex="2">
+                        <Button onAction="#pulsaSellar" prefWidth="300.0" style="-fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" styleClass="button" text="_Sellar Carnet" textFill="WHITE" GridPane.rowIndex="2">
                            <font>
                               <Font name="Segoe UI Black" size="20.0" />
                            </font>
                         </Button>
-                        <Button onAction="#pulsaExportar" mnemonicParsing="false" prefWidth="300.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Exportar Datos de parada" textFill="WHITE" GridPane.rowIndex="1">
+                        <Button onAction="#pulsaExportar" prefWidth="300.0" style="-fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" styleClass="button" text="_Exportar Datos de parada" textFill="WHITE" GridPane.rowIndex="1">
                            <font>
                               <Font name="Segoe UI Black" size="20.0" />
                            </font>
                         </Button>
-                        <Button onAction="#logout" mnemonicParsing="false" prefWidth="300.0" style="-fx-background-color: transparent; -fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" text="Cerrar Sesión" textFill="WHITE" GridPane.rowIndex="3">
+                        <Button mnemonicParsing="false" onAction="#logout" prefWidth="300.0" style="-fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" styleClass="button" text="Cerrar Sesión" textFill="WHITE" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Segoe UI Black" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#PulsaVerLista" prefWidth="300.0" style="-fx-border-color: #38bada; -fx-border-width: 2; -fx-border-radius: 5;" styleClass="button" text="Ver Lista de Envios" textFill="WHITE" GridPane.rowIndex="3">
                            <font>
                               <Font name="Segoe UI Black" size="20.0" />
                            </font>

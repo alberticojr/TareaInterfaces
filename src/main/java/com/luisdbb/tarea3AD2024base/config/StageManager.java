@@ -11,6 +11,7 @@ import com.luisdbb.tarea3AD2024base.view.FxmlView;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -37,11 +38,17 @@ public class StageManager {
         //scene.getStylesheets().add("/styles/Styles.css");
         
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
+        
+		Image icon = new Image("/images/iconos/senderismo.png");
+		primaryStage.getIcons().add(icon);
+		
+        
         primaryStage.setTitle(title);
         primaryStage.setScene(scene);
         primaryStage.sizeToScene();
         primaryStage.centerOnScreen();
         primaryStage.setResizable(false);
+        
         
         try {
             primaryStage.show();

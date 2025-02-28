@@ -3,6 +3,7 @@ package com.luisdbb.tarea3AD2024base.services;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -76,6 +77,16 @@ public class ValidacionesService {
 		}
 		
 		if (nombreCompleto == null || nombreCompleto.length() == 0) { AlertasServices.altNombreCompleto(); credencialesCorrectas = false;}
+		else {
+		
+		for (int i = 0; i < nombreCompleto.length(); i++) {
+			if (Character.isDigit(nombreCompleto.charAt(i))) {
+				AlertasServices.altNombreCompletoConNumeros();
+				credencialesCorrectas = false;
+				break;
+			}
+		}
+		}
 		if (region == null || region.length() == 0) { AlertasServices.altRegionVacia(); credencialesCorrectas = false;}
 		return credencialesCorrectas;
 
@@ -91,6 +102,8 @@ public class ValidacionesService {
 
 	}
 	
-	
-
+	public static boolean validacionCorreo(String correo) {
+        String patron = "^[\\w.-]+@[a-zA-Z\\d.-]+\\.[a-zA-Z]{2,}$";
+        return Pattern.matches(patron, correo);
+    }
 }
