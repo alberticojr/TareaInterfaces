@@ -44,25 +44,25 @@ public class RegistroPeregrinoController implements Initializable{
 	
 	
 	@FXML
-	private TextField nombreField;
+	public TextField nombreField;
 	
 	@FXML
-	private TextField usuField;
+	public TextField usuField;
 	
 	@FXML
-	private TextField contraField;
+	public TextField contraField;
 	
 	@FXML
-	private TextField conf_Contra;
+	public TextField conf_Contra;
 	
 	@FXML
-	private TextField correo;
+	public TextField correo;
 	
 	@FXML
-	private ChoiceBox <String> chbParada;
+	public ChoiceBox <String> chbParada;
 	
 	@FXML
-	private ChoiceBox <String> chbPaises;
+	public ChoiceBox <String> chbPaises;
 	
 	@FXML
 	private Button btnCrear;
@@ -79,7 +79,7 @@ public class RegistroPeregrinoController implements Initializable{
 	
 	
 	@FXML
-	private void PulsaCrearPeregrino() {
+	public void PulsaCrearPeregrino() {
 		String nombreCompleto = nombreField.getText();
 		String nombreUsuario = usuField.getText();
 		String contraUsuario = contraField.getText();

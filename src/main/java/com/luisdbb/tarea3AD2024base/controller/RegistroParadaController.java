@@ -34,16 +34,16 @@ public class RegistroParadaController implements Initializable{
 	
 	
 	@FXML
-	TextField nombrePaField;
+	public TextField nombrePaField;
 	
 	@FXML
-	TextField regionPaField;
+	public TextField regionPaField;
 	
 	@FXML
-	TextField nombreReField;
+	public TextField nombreReField;
 	
 	@FXML
-	TextField contraReField;
+	public TextField contraReField;
 	
 	@FXML
 	private Button btnAyuda;
@@ -55,7 +55,7 @@ public class RegistroParadaController implements Initializable{
 	private CredencialesService credencialeService;
 	
 	@FXML
-	private void pulsaCrearParada(ActionEvent event) throws IOException {
+	public void pulsaCrearParada(ActionEvent event) throws IOException {
 		
 		String nombreParada = nombrePaField.getText();
 		

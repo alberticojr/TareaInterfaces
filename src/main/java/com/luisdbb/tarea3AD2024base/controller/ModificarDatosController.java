@@ -45,16 +45,16 @@ public class ModificarDatosController implements Initializable{
 	private Label lblParadaInicial;
 	
 	@FXML
-	private TextField fieldNombreCompleto;
+	public TextField fieldNombreCompleto;
 	
 	@FXML
-	private TextField fieldCorreo;
+	public TextField fieldCorreo;
 	
 	@FXML
 	private Button btnAyuda;
 	
 	@FXML
-	private ComboBox<String> CBoxNacionalidad;
+	public ComboBox<String> CBoxNacionalidad;
 	
 	@Autowired
 	private PeregrinoService peregrinoService;
@@ -63,7 +63,7 @@ public class ModificarDatosController implements Initializable{
 	
 	
 	@FXML
-	private void pulsaEditar() {
+	public void pulsaEditar() {
 
 		String nombreCompleto = fieldNombreCompleto.getText();
 		String correo = fieldCorreo.getText();

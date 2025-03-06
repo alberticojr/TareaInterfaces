@@ -35,16 +35,16 @@ public class LoginNuevoController implements Initializable {
 	public static Sesion sesion = new Sesion("invitado", "invitado");
 	
 	@FXML
-	private TextField usufield;
+	public TextField usufield;
 	
 	@FXML
-	private TextField contrafield;
+	public TextField contrafield;
 	
 	@FXML
-	private Label lblIncorrecto1;
+	public Label lblIncorrecto1;
 	
 	@FXML
-	private Label lblIncorrecto2;
+	public Label lblIncorrecto2;
 	
 	@FXML
 	private Hyperlink hplinkRegistrarse;
@@ -65,7 +65,7 @@ public class LoginNuevoController implements Initializable {
 	}
 	
 	@FXML
-    private void login(ActionEvent event) throws IOException{
+	public void login(ActionEvent event) throws IOException{
 		if (usufield.getText().equals("admin") && contrafield.getText().equals("admin")) {
 			
 			sesion.setNombre(usufield.getText());

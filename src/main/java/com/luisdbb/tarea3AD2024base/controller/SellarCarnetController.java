@@ -82,13 +82,13 @@ public class SellarCarnetController implements Initializable{
 	
 	//OBJETOS BASICOS
 	@FXML
-	private ComboBox<String> coBoxPeregrino;
+	public ComboBox<String> coBoxPeregrino;
 	
 	@FXML
-	private CheckBox chBoxEstancia;
+	public CheckBox chBoxEstancia;
 	
 	@FXML
-	private CheckBox chBoxVip;
+	public CheckBox chBoxVip;
 	
 	@FXML
 	private Button btnSellar;
@@ -149,7 +149,7 @@ public class SellarCarnetController implements Initializable{
 	boolean EnvioACasa = false;
 	
 	@FXML
-	private void pulsaSellar () {
+	public void pulsaSellar () {
 		
 		List <PeregrinoParada> listaPP = peregrinoParadaService.listaParadasPorFecha(Date.valueOf(LocalDate.now()));
 		
