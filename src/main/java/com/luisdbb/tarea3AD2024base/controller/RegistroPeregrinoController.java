@@ -109,6 +109,7 @@ public class RegistroPeregrinoController implements Initializable{
 		String nombreParada = nombreYRegion[0];
 		char regionParada = nombreYRegion[1].charAt(0);
 
+
 		Parada paradaP = paradaService.findByNameAndRegion(nombreParada, regionParada);
 
 		boolean peregrinoExiste = peregrinoService.existePeregrino(nombreUsuario);

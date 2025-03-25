@@ -1,7 +1,6 @@
 package com.luisdbb.tarea3AD2024base.controller;
 
 
-import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -63,6 +62,7 @@ import net.sf.jasperreports.engine.design.JRDesignSection;
 import net.sf.jasperreports.engine.design.JRDesignStaticText;
 import net.sf.jasperreports.engine.design.JRDesignTextField;
 import net.sf.jasperreports.engine.design.JasperDesign;
+
 
 
 @Controller
@@ -467,7 +467,6 @@ public class MenuPeregrinoController implements Initializable{
 	    }
 	}
 
-	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

@@ -84,7 +84,6 @@ public class ModificarServicioController implements Initializable{
 	private List <Servicio> listaServicios;
 	
 	private Long idServicioActual = -0L;
-
 	private Servicio ServicioActual;
 	
 	
@@ -254,7 +253,6 @@ public class ModificarServicioController implements Initializable{
 		if (listaServicios != null) {
 			cargarListaServicios();
 			CBServicios.setValue( listaServicios.get(0).getId()+ " | " +listaServicios.get(0).getNombre() + " | " + listaServicios.get(0).getPrecio());
-
 			idServicioActual = 1L;
 			ServicioActual = db4oService.buscarServicioPorID(idServicioActual);
 		}

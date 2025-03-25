@@ -68,6 +68,7 @@ public class ModificarDatosTest {
     
 	@Test
 	void testCrearParadaUsuarioExiste() {
+
 		Platform.runLater(() -> {
 			try (MockedStatic<ValidacionesService> validacionesMock = mockStatic(ValidacionesService.class)) {
 
